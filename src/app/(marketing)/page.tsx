@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function Home() {
   return (
-    <div className="flex flex-col xl:flex-row items-center justify-center gap-30 bg-[#000] text-white min-h-screen">
+    <div className="flex flex-col xl:flex-row items-center justify-center gap-30 bg-[#5DC9A8] min-h-screen">
       <Image
         src={
           "https://bytegrad.com/course-assets/youtube/expensestracker/preview.png"
