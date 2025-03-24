@@ -6,7 +6,7 @@ const expenses = [
 
 export default function ExpensesList() {
   return (
-    <ul className="h-[300px] bg-white rounded mt-4 shadow-md">
+    <ul className="h-[600px] bg-white rounded mt-4 shadow-md">
       {expenses.map((expense) => (
         <li
           className="px-4 py-2 border-b mx-2 border-black/10 flex items-center"
