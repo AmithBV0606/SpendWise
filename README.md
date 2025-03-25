@@ -69,3 +69,5 @@ npx prisma db push
 ```bash
 npx prisma studio
 ```
+
+6. To use the prisma we need to create an instance of prisma client. Refer `src/libs/`
