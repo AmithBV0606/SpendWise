@@ -71,3 +71,9 @@ npx prisma studio
 ```
 
 6. To use the prisma we need to create an instance of prisma client. Refer `src/libs/`
+
+### Data fetching 
+
+- Only "GET" request can be made from within the server components. For other type of requests we need to use Server Actions.
+
+<img src="./assets/Pic-1.png" /> 
