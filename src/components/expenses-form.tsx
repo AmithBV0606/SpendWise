@@ -15,6 +15,7 @@ export default function ExpensesForm() {
         placeholder="Amount"
         name="amount"
         className="w-full px-3 py-2 outline-none bg-white"
+        step={0.01}
       />
 
       <button className="w-full bg-blue-500 text-white px-2 py-2 font-bold cursor-pointer">
