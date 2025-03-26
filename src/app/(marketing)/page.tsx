@@ -1,3 +1,4 @@
+import { LoginLink, RegisterLink } from "@kinde-oss/kinde-auth-nextjs/server";
 import Image from "next/image";
 
 export default function Home() {
@@ -23,7 +24,15 @@ export default function Home() {
           access for $4.99
         </p>
 
-        <div></div>
+        <div className="mt-10 space-x-3">
+          <LoginLink className="bg-black text-white py-2 px-4 rounded-md font-medium">
+            Login
+          </LoginLink>
+
+          <RegisterLink className="bg-black/50 text-white py-2 px-4 rounded-md font-medium">
+            Register
+          </RegisterLink>
+        </div>
       </div>
     </div>
   );
