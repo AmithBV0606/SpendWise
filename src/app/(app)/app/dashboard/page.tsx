@@ -1,6 +1,8 @@
 import ExpensesForm from "@/components/expenses-form";
 import ExpensesList from "@/components/expenses-list";
 import { prisma } from "@/lib/db";
+import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
+import { redirect } from "next/navigation";
 
 export type ExpensesListProps = {
   id: number;
@@ -10,6 +12,13 @@ export type ExpensesListProps = {
 };
 
 export default async function Page() {
+  // Authentication Check : User should only be able to get the list of expenses only when he/she is signedIn
+  const { isAuthenticated } = getKindeServerSession();
+
+  if (!(await isAuthenticated())) {
+    return redirect("/api/auth/login");
+  }
+
   const expenses: ExpensesListProps[] = await prisma.expense.findMany();
 
   return (
