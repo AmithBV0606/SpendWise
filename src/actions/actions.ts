@@ -1,10 +1,19 @@
 "use server";
 
 import { prisma } from "@/lib/db";
+import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
 
 // Create operation
 export async function addExpenses(formData: FormData) {
+  // Make sure the user is authenticated before adding expenses into the database
+  const { isAuthenticated } = getKindeServerSession();
+
+  if (!(await isAuthenticated())) {
+    return redirect("/api/auth/login");
+  }
+
   await prisma.expense.create({
     data: {
       description: formData.get("description") as string,
@@ -18,6 +27,13 @@ export async function addExpenses(formData: FormData) {
 
 // Delete Operation
 export async function deleteExpenses(id: number) {
+  // Make sure the user is authenticated before deleting the expenses from the database
+  const { isAuthenticated } = getKindeServerSession();
+
+  if (!(await isAuthenticated())) {
+    return redirect("/api/auth/login");
+  }
+
   await prisma.expense.delete({
     where: {
       id: id,
