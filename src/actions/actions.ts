@@ -8,16 +8,19 @@ import { redirect } from "next/navigation";
 // Create operation
 export async function addExpenses(formData: FormData) {
   // Make sure the user is authenticated before adding expenses into the database
-  const { isAuthenticated } = getKindeServerSession();
+  const { isAuthenticated, getUser } = getKindeServerSession();
 
   if (!(await isAuthenticated())) {
     return redirect("/api/auth/login");
   }
 
+  const user = await getUser();
+
   await prisma.expense.create({
     data: {
       description: formData.get("description") as string,
       amount: parseFloat(formData.get("amount") as string),
+      creatorId: user.id,
     },
   });
   //   We're getting description as a string because we previously set "name" attribute in the input.
