@@ -14,12 +14,22 @@ export type ExpensesListProps = {
 export default async function Page() {
   // Authentication Check : User should only be able to get the list of expenses only when he/she is signedIn
   const { isAuthenticated, getUser } = getKindeServerSession();
-
   if (!(await isAuthenticated())) {
     return redirect("/api/auth/login");
   }
 
+  // Authorization check : To know if the user is a premium mermber or not
   const user = await getUser();
+  const membership = await prisma.membership?.findFirst({
+    where: {
+      userId: user.id,
+    },
+  });
+
+  // If the user is not a premium member
+  if (!membership || membership.status !== "active") {
+    return redirect("/");
+  }
 
   const expenses: ExpensesListProps[] = await prisma.expense.findMany({
     where: {
