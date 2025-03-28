@@ -4,6 +4,7 @@ import { prisma } from "@/lib/db";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
+import Stripe from "stripe";
 
 // Create operation
 export async function addExpenses(formData: FormData) {
@@ -44,4 +45,34 @@ export async function deleteExpenses(id: number) {
   });
 
   revalidatePath("/app/dashboard");
+}
+
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
+  apiVersion: "2025-02-24.acacia",
+});
+
+// To create a session for checkout
+export async function createCheckoutSession() {
+  const { isAuthenticated, getUser } = getKindeServerSession();
+  if (!(await isAuthenticated())) {
+    return redirect("/api/auth/login");
+  }
+
+  const user = await getUser();
+
+  const session = await stripe.checkout.sessions.create({
+    customer_email: user.email!,
+    client_reference_id: user.id,
+    line_items: [
+      {
+        price: "price_1R7FIjC9hYStAMMZRyuKeTap",
+        quantity: 1,
+      },
+    ],
+    mode: "payment",
+    success_url: "http://localhost:3000/app/dashboard",
+    cancel_url: "http://localhost:3000",
+  });
+
+  redirect(session.url!);
 }
