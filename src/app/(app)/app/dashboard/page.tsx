@@ -11,11 +11,21 @@ export type ExpensesListProps = {
   createdAt: Date;
 };
 
-export default async function Page() {
+export default async function Page({
+  searchParams,
+}: {
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+}) {
   // Authentication Check : User should only be able to get the list of expenses only when he/she is signedIn
   const { isAuthenticated, getUser } = getKindeServerSession();
   if (!(await isAuthenticated())) {
     return redirect("/api/auth/login");
+  }
+
+  // On Successful payment : 1. Stripe redirects to "/app/dashboard" (1 second) 2. Stripe sends a Webhook to our app (3 seconds). To avoid the race condition between these 2 :
+  const paymentValueFromUrl = (await searchParams).payment;
+  if (paymentValueFromUrl === "success") {
+    await new Promise((resolve) => setTimeout(resolve, 4000));
   }
 
   // Authorization check : To know if the user is a premium mermber or not

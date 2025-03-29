@@ -1,14 +1,16 @@
 import PurchaseButton from "@/components/purchase-button";
+import { prisma } from "@/lib/db";
 import {
   getKindeServerSession,
   LoginLink,
   RegisterLink,
 } from "@kinde-oss/kinde-auth-nextjs/server";
 import Image from "next/image";
+import Link from "next/link";
 // import { redirect } from "next/navigation";
 
 export default async function Home() {
-  const { isAuthenticated } = getKindeServerSession();
+  const { isAuthenticated, getUser } = getKindeServerSession();
 
   // Wrote this code earlier to prevent the user from going to home/landing page once after they're logged in. Now there's a change in plan, I need to show the payment button to the loggedin users on the home page.
   // if (await isAuthenticated()) {
@@ -16,6 +18,21 @@ export default async function Home() {
   // }
 
   const isLoggedIn = await isAuthenticated();
+
+  // To disable or change the purchase button after the user has purchased
+  let isPayingMember = false;
+  const user = await getUser();
+  if (user) {
+    const membership = await prisma.membership.findFirst({
+      where: {
+        userId: user.id,
+        status: "active",
+      },
+    });
+    if (membership) {
+      isPayingMember = true;
+    }
+  }
 
   return (
     <div className="flex flex-col xl:flex-row items-center justify-center gap-30 bg-[#5DC9A8] min-h-screen">
@@ -50,10 +67,17 @@ export default async function Home() {
                 Register
               </RegisterLink>
             </>
-          ) : (
+          ) : !isPayingMember ? (
             <>
               <PurchaseButton />
             </>
+          ) : (
+            <Link
+              href={"/app/dashboard"}
+              className="bg-black text-white py-2 px-4 rounded-lg font-medium cursor-pointer"
+            >
+              Go to dashboard
+            </Link>
           )}
         </div>
       </div>

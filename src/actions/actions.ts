@@ -70,7 +70,7 @@ export async function createCheckoutSession() {
       },
     ],
     mode: "payment",
-    success_url: "http://localhost:3000/app/dashboard",
+    success_url: "http://localhost:3000/app/dashboard?payment=success",
     cancel_url: "http://localhost:3000",
   });
 
