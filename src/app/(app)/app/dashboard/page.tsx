@@ -22,10 +22,11 @@ export default async function Page({
     return redirect("/api/auth/login");
   }
 
-  // On Successful payment : 1. Stripe redirects to "/app/dashboard" (1 second) 2. Stripe sends a Webhook to our app (3 seconds). To avoid the race condition between these 2 :
+  // On Successful payment : 1. Stripe redirects to "/app/dashboard" (1 second) 2. Stripe sends a Webhook to our app (3 seconds). To avoid the race condition between these 2, we need to add artificial delay :
   const paymentValueFromUrl = (await searchParams).payment;
   if (paymentValueFromUrl === "success") {
     await new Promise((resolve) => setTimeout(resolve, 4000));
+    redirect("/app/dashboard");
   }
 
   // Authorization check : To know if the user is a premium mermber or not
