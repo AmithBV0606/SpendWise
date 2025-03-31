@@ -1,27 +1,11 @@
-export default async function Loading({
-  searchParams,
-}: {
-  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
-}) {
-  const paymentValueFromUrl = (await searchParams).payment;
-  if (paymentValueFromUrl === "success") {
-    return (
-      <div className="flex justify-center items-center h-screen w-full">
-        <p className="text-xl font-semibold">Veryfying payment...</p>
-      </div>
-    );
-  }
-
+export default function Loading() {
   return (
     <div
       aria-label="Loading..."
       role="status"
       className="flex items-center justify-center h-screen space-x-2 -mt-36"
     >
-      <svg
-        className="h-20 w-20 animate-spin stroke-gray-500"
-        viewBox="0 0 256 256"
-      >
+      <svg className="h-20 w-20 animate-spin stroke-gray-500" viewBox="0 0 256 256">
         <line
           x1="128"
           y1="32"
