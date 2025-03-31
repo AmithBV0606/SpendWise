@@ -6,7 +6,7 @@ import { redirect } from "next/navigation";
 
 export type ExpensesListProps = {
   id: number;
-  description: string; 
+  description: string;
   amount: number;
   createdAt: Date;
 };
@@ -25,8 +25,8 @@ export default async function Page({
   // On Successful payment : 1. Stripe redirects to "/app/dashboard" (1 second) 2. Stripe sends a Webhook to our app (3 seconds). To avoid the race condition between these 2, we need to add artificial delay :
   const paymentValueFromUrl = (await searchParams).payment;
   if (paymentValueFromUrl === "success") {
-    await new Promise((resolve) => setTimeout(resolve, 4000));
-    redirect("/app/dashboard");
+    await new Promise((resolve) => setTimeout(resolve, 3000));
+    return redirect("/app/dashboard");
   }
 
   // Authorization check : To know if the user is a premium mermber or not
