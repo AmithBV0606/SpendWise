@@ -6,7 +6,7 @@ import { redirect } from "next/navigation";
 
 export type ExpensesListProps = {
   id: number;
-  description: String;
+  description: string; 
   amount: number;
   createdAt: Date;
 };

@@ -16,8 +16,11 @@ export async function POST(request: Request) {
       request.headers.get("stripe-signature")!,
       process.env.STRIPE_WEBHOOK_SECRET!
     );
-  } catch (error: any) {
-    console.error(`Webhook signature verification failed. ${error.message}`);
+  } catch (error) {
+    console.error(`Webhook signature verification failed.`);
+    if (error instanceof Error) {
+      console.error(error.message);
+    }
     return Response.json({ received: false }, { status: 400 });
   }
 
