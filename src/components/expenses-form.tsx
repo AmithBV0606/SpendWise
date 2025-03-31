@@ -1,4 +1,5 @@
 import { addExpenses } from "@/actions/actions";
+import { memo } from "react";
 
 export default function ExpensesForm() {
   return (
@@ -8,6 +9,7 @@ export default function ExpensesForm() {
         placeholder="Description"
         name="description"
         className="w-full px-3 py-2 outline-none bg-white"
+        required
       />
 
       <input
@@ -16,6 +18,7 @@ export default function ExpensesForm() {
         name="amount"
         className="w-full px-3 py-2 outline-none bg-white"
         step={0.01}
+        required
       />
 
       <button className="w-full bg-blue-500 text-white px-2 py-2 font-bold cursor-pointer">
