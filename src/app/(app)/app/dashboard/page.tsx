@@ -1,5 +1,6 @@
 import ExpensesForm from "@/components/expenses-form";
 import ExpensesList from "@/components/expenses-list";
+import TotalExpenses from "@/components/total-expenses";
 import { prisma } from "@/lib/db";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { redirect } from "next/navigation";
@@ -52,10 +53,16 @@ export default async function Page({
     <div>
       <h1 className="text-3xl font-bold text-white text-center">Dashboard</h1>
 
-      <div className="w-full max-w-[600px] mx-auto">
-        <ExpensesList expenses={expenses} />
+      <div className="flex">
+        <div className="w-full max-w-[600px] mx-auto">
+          <ExpensesList expenses={expenses} />
 
-        <ExpensesForm />
+          <ExpensesForm />
+        </div>
+
+        <div className="hidden md:block">
+          <TotalExpenses expenses={expenses}/>
+        </div>
       </div>
     </div>
   );
