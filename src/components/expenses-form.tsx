@@ -1,5 +1,4 @@
 import { addExpenses } from "@/actions/actions";
-import { memo } from "react";
 
 export default function ExpensesForm() {
   return (
