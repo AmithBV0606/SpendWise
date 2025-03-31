@@ -1,79 +1,79 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# SpendWise
+
+SpendWise is a Full-Stack SaaS application designed to help users efficiently track their expenses. It provides insightful analytics and seamless payment management using Stripe.
+
+## Features
+
+- **Expense Tracking**: Easily add, edit, and delete expenses.
+- **Analytics Dashboard**: Gain insights into spending patterns using PostHog.
+- **User Authentication**: Secure authentication system.
+- **Subscription Management**: Integrates with Stripe for managing payments.
+- **Responsive UI**: Built with a modern and intuitive design for a seamless experience.
+
+## Tech Stack
+
+**Frontend:**
+- Next.js
+- TypeScript
+- TailwindCSS
+
+**Backend:**
+- Node.js (Next.js API routes)
+- PostgreSQL (Database)
+- Prisma ORM
+
+**Other Services:**
+- Stripe (Payments)
+- PostHog (Analytics)
+- Kinde (Authentication)
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+Ensure you have the following installed:
+- Node.js
+- PostgreSQL
+- A Stripe account
+- A PostHog account
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+### Installation
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+1. Clone the repository:
+   ```sh
+   git clone https://github.com/your-username/spendwise.git
+   cd spendwise
+   ```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+2. Install dependencies:
+   ```sh
+   npm install
+   ```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+3. Set up environment variables:
+   Create a `.env` file and add the following variables:
+   ```env
+   DATABASE_URL=your_database_url
+   NEXT_PUBLIC_STRIPE_KEY=your_stripe_key
+   POSTHOG_API_KEY=your_posthog_key
+   ```
 
-## Learn More
+4. Run database migrations:
+   ```sh
+   npx prisma migrate dev
+   ```
 
-To learn more about Next.js, take a look at the following resources:
+5. Start the development server:
+   ```sh
+   npm run dev
+   ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Usage
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. Register or log in to your account.
+2. Add your expenses and categorize them.
+3. View analytics to understand your spending habits.
+4. Subscribe to premium features via Stripe for enhanced tracking.
 
-## Deploy on Vercel
+## License
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-
-## Prisma with SQLite :
-
-1. Install the Prisma CLI as a development dependency in the project:
-
-```bash
-npm install prisma --save-dev
-```
-
-2. Set up Prisma ORM with the init command of the Prisma CLI:
-
-```bash
-npx prisma init --datasource-provider sqlite
-```
-
-- After running the above command, a folder named `prisma` will be created in the root directory. Inside the folder `schema.prisma` file will be created where we write models(Table structure) for our application.
-
-3. Model your data in the Prisma schema. Models in the Prisma schema have two main purposes:
-
-- Represent the tables in the underlying database
-- Serve as foundation for the generated Prisma Client API
-
-4. To run prisma in development mode : 
-
-```bash
-npx prisma db push
-```
-
-- This command creates a file `dev.db` inside the `prisma` folder.
-
-5. To view the created table visually(UI) :
-
-```bash
-npx prisma studio
-```
-
-6. To use the prisma we need to create an instance of prisma client. Refer `src/libs/`
-
-### Data fetching 
-
-- Only "GET" request can be made from within the server components. For other type of requests we need to use Server Actions.
-
-<img src="./assets/Pic-1.png" /> 
+This project is licensed under the MIT License.
