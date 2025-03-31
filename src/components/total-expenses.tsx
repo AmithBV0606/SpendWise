@@ -6,7 +6,7 @@ export default function TotalExpenses({
   expenses: ExpensesListProps[];
 }) {
   return (
-    <div className="bg-white h-auto w-auto rounded mt-6 shadow-md px-2">
+    <div className="bg-white h-auto w-auto rounded-lg mt-6 shadow-md px-2">
       <p className="p-3 text-lg tracking-wide font-semibold">
         Expense Items : {expenses.length}
       </p>

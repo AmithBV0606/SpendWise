@@ -6,7 +6,7 @@ export default function Loading() {
       className="flex items-center justify-center h-screen space-x-2 -mt-28"
     >
       <svg
-        className="h-20 w-20 animate-spin stroke-gray-500"
+        className="h-20 w-20 animate-spin stroke-gray-300"
         viewBox="0 0 256 256"
       >
         <line
@@ -82,7 +82,7 @@ export default function Loading() {
           strokeWidth="24"
         ></line>
       </svg>
-      <span className="text-3xl font-medium text-black">Loading...</span>
+      <span className="text-3xl font-medium text-gray-300">Loading...</span>
     </div>
   );
 }

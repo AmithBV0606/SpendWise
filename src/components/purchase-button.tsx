@@ -8,7 +8,7 @@ export default function PurchaseButton() {
       onClick={async () => {
         await createCheckoutSession();
       }}
-      className="bg-black text-white py-2 px-4 rounded-md font-medium cursor-pointer"
+      className="bg-sky-600 hover:bg-sky-500 text-white py-3 px-4 rounded-lg font-medium cursor-pointer"
     >
       Purchase
     </button>

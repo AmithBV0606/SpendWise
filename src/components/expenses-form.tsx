@@ -2,7 +2,7 @@ import { addExpenses } from "@/actions/actions";
 
 export default function ExpensesForm() {
   return (
-    <form action={addExpenses} className="w-full mt-8 rounded overflow-hidden">
+    <form action={addExpenses} className="w-full mt-8 rounded-lg overflow-hidden">
       <input
         type="text"
         placeholder="Description"
@@ -20,7 +20,7 @@ export default function ExpensesForm() {
         required
       />
 
-      <button className="w-full bg-blue-500 text-white px-2 py-2 font-bold cursor-pointer">
+      <button className="w-full bg-sky-600 hover:bg-sky-500 text-white px-2 py-2 font-bold cursor-pointer">
         Add Expense
       </button>
     </form>

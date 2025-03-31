@@ -28,7 +28,7 @@ export default async function Page() {
       <h1 className="text-3xl font-bold text-white">Account</h1>
 
       <p className="text-white mt-2">
-        Logged in with email : <span className="font-bold">{user.email}</span>
+        Logged in with email : <span className="font-bold underline decoration-2 decoration-sky-400">{user.email}</span>
       </p>
     </div>
   );

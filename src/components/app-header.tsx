@@ -17,13 +17,11 @@ export default function AppHeader() {
     <header className="flex items-center border-b border-white/25 py-4">
       <Link href={"/app/dashboard"}>
         <Image
-          src={
-            "https://bytegrad.com/course-assets/youtube/expensestracker/logo.png"
-          }
+          src={"/Logo.png"}
           alt="Logo"
           width={25}
           height={25}
-          className="cursor-pointer"
+          className="cursor-pointer w-10 border border-white rounded-full"
         />
       </Link>
 
@@ -34,7 +32,7 @@ export default function AppHeader() {
               <Link
                 href={route.path}
                 className={`px-2 py-2 hover:text-white transition text-white/100 rounded-sm cursor-pointer ${
-                  route.path === pathname ? "bg-black/10" : ""
+                  route.path === pathname ? "bg-white/20" : ""
                 }`}
               >
                 {route.label}

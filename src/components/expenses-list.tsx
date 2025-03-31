@@ -18,7 +18,7 @@ export default function ExpensesList({
   }
 
   return (
-    <ul className="h-[500px] bg-white rounded mt-6 shadow-md px-2 overflow-y-scroll">
+    <ul className="h-[500px] bg-white rounded-lg mt-6 shadow-md px-2 overflow-y-scroll">
       {expenses.map((expense) => (
         <li
           className="px-4 py-3 border-b border-black/10 flex items-center"

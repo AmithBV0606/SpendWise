@@ -35,35 +35,33 @@ export default async function Home() {
   }
 
   return (
-    <div className="flex flex-col xl:flex-row items-center justify-center gap-30 bg-[#5DC9A8] min-h-screen">
+    <div className="flex flex-col xl:flex-row items-center justify-center gap-10 xl:gap-20 min-h-screen bg-[radial-gradient(circle_710px_at_5.2%_7.2%,_rgba(37,89,222,1)_0%,_rgba(37,89,222,1)_7.5%,_rgba(4,4,29,1)_44.7%)]">
       <Image
-        src={
-          "https://bytegrad.com/course-assets/youtube/expensestracker/preview.png"
-        }
+        src={"/AppPreview.png"}
         alt="SpendWise app preview"
         width={700}
         height={472}
-        className="rounded-md"
+        className="rounded-2xl h-[250px] w-[350px] md:h-[400px] md:w-[600px] lg:h-[500px] lg:w-[800px] border-2 border-sky-600 hover:rotate-6"
       />
 
-      <div>
-        <h1 className="text-5xl font-semibold my-6 max-w-[500px]">
+      <div className="text-center xl:text-left">
+        <h1 className="text-5xl text-sky-600 font-semibold my-6 max-w-[500px]">
           Track your <span className="font-extrabold">expenses</span> with ease
         </h1>
 
-        <p className="text-2xl font-medium max-w-[600px]">
+        <p className="text-2xl font-medium max-w-[600px] text-gray-600 space-y-2">
           Use SpendWise to easily keep track of your expenses. Get lifetime
-          access for $4.99
+          access for <span className="px-2 py-1 bg-sky-500 rounded-lg text-black">$4.99</span>
         </p>
 
         <div className="mt-10 space-x-3">
           {!isLoggedIn ? (
             <>
-              <LoginLink className="bg-black text-white py-2 px-4 rounded-md font-medium">
+              <LoginLink className="bg-sky-600 hover:bg-sky-500 text-white py-2 px-4 rounded-md font-medium">
                 Login
               </LoginLink>
 
-              <RegisterLink className="bg-black/50 text-white py-2 px-4 rounded-md font-medium">
+              <RegisterLink className="bg-white/20 hover:bg-white/15 text-white py-2 px-4 rounded-md font-medium">
                 Register
               </RegisterLink>
             </>
@@ -74,7 +72,7 @@ export default async function Home() {
           ) : (
             <Link
               href={"/app/dashboard"}
-              className="bg-black text-white py-2 px-4 rounded-lg font-medium cursor-pointer"
+              className="bg-sky-600 hover:bg-sky-500 text-white py-3 px-4 rounded-lg font-medium cursor-pointer"
             >
               Go to dashboard
             </Link>
