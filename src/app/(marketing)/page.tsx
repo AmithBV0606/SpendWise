@@ -36,13 +36,29 @@ export default async function Home() {
 
   return (
     <div className="flex flex-col xl:flex-row items-center justify-center gap-10 xl:gap-20 min-h-screen bg-[radial-gradient(circle_710px_at_5.2%_7.2%,_rgba(37,89,222,1)_0%,_rgba(37,89,222,1)_7.5%,_rgba(4,4,29,1)_44.7%)]">
-      <Image
-        src={"/AppPreview.png"}
-        alt="SpendWise app preview"
-        width={700}
-        height={472}
-        className="rounded-2xl h-[250px] w-[350px] md:h-[400px] md:w-[600px] lg:h-[500px] lg:w-[800px] border-2 border-sky-600 hover:rotate-6"
-      />
+      {/* App preview image : */}
+      {/* <div className="rounded-2xl border-t-4 border-sky-600 hover:rotate-6">
+        <Image
+          src={"/AppPreview.png"}
+          alt="SpendWise app preview"
+          width={700}
+          height={472}
+          className="rounded-2xl h-[250px] w-[350px] md:h-[400px] md:w-[600px] lg:h-[500px] lg:w-[800px]"
+        />
+      </div> */}
+
+      {/* Alternative */}
+      <div className="card-wrapper rounded-2xl h-[250px] w-[350px] md:h-[400px] md:w-[600px] lg:h-[500px] lg:w-[800px] hover:rotate-6">
+        <div className="card-content flex items-center justify-center text-xs">
+          <Image
+            src={"/AppPreview.png"}
+            alt="SpendWise app preview"
+            width={700}
+            height={472}
+            className="rounded-2xl w-[100%] h-[100%]"
+          />
+        </div>
+      </div>
 
       <div className="text-center xl:text-left">
         <h1 className="text-5xl text-sky-600 font-semibold my-6 max-w-[500px]">
@@ -51,7 +67,10 @@ export default async function Home() {
 
         <p className="text-2xl font-medium max-w-[600px] text-gray-600 space-y-2">
           Use SpendWise to easily keep track of your expenses. Get lifetime
-          access for <span className="px-2 py-1 bg-sky-500 rounded-lg text-black">$4.99</span>
+          access for{" "}
+          <span className="px-2 py-1 bg-sky-500 rounded-lg text-black">
+            $4.99
+          </span>
         </p>
 
         <div className="mt-10 space-x-3">
