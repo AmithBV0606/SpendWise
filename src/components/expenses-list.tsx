@@ -1,5 +1,6 @@
 import { ExpensesListProps } from "@/app/(app)/app/dashboard/page";
 import DeleteButton from "./delete-button";
+import UpdateButton from "./update-button";
 
 export default function ExpensesList({
   expenses,
@@ -21,12 +22,16 @@ export default function ExpensesList({
     <ul className="h-[500px] bg-white rounded-lg mt-6 shadow-md px-2 overflow-y-scroll">
       {expenses.map((expense) => (
         <li
-          className="px-4 py-3 border-b border-black/10 flex items-center"
+          className="px-4 py-3 border-b border-black/10 flex items-center justify-between"
           key={expense.id}
         >
           <p>{expense.description}</p>
-          <p className="ml-auto font-bold mr-[15px]">${expense.amount}</p>
-          <DeleteButton id={expense.id} />
+
+          <div className="flex items-center gap-3">
+            <p className="ml-auto font-bold">${expense.amount}</p>
+            <UpdateButton />
+            <DeleteButton id={expense.id} />
+          </div>
         </li>
       ))}
     </ul>
