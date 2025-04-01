@@ -1,5 +1,5 @@
 import { ExpensesListProps } from "@/app/(app)/app/dashboard/page";
-import Button from "./delete-button";
+import DeleteButton from "./delete-button";
 
 export default function ExpensesList({
   expenses,
@@ -26,10 +26,7 @@ export default function ExpensesList({
         >
           <p>{expense.description}</p>
           <p className="ml-auto font-bold mr-[15px]">${expense.amount}</p>
-          {/* <button className="text-[10px] h-[20px] w-[20px] bg-red-500 text-white rounded cursor-pointer hover:bg-red-600">
-            X
-          </button> */}
-          <Button id={expense.id} />
+          <DeleteButton id={expense.id} />
         </li>
       ))}
     </ul>

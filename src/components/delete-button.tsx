@@ -1,18 +1,19 @@
 "use client";
 
 import { deleteExpenses } from "@/actions/actions";
+import { MdOutlineDelete } from "react-icons/md";
 
 const handleClick = async (id: number) => {
   await deleteExpenses(id);
 };
 
-export default function Button({ id }: { id: number }) {
+export default function DeleteButton({ id }: { id: number }) {
   return (
     <button
-      className="text-[10px] h-[20px] w-[20px] bg-red-500 text-white rounded cursor-pointer hover:bg-red-600"
+      className="bg-red-600 rounded p-1 cursor-pointer hover:bg-red-500 text-center"
       onClick={() => handleClick(id)}
     >
-      X
+      <MdOutlineDelete size={20} className="text-gray-200" />
     </button>
   );
 }
