@@ -29,7 +29,7 @@ export default function ExpensesList({
 
           <div className="flex items-center gap-3">
             <p className="ml-auto font-bold">${expense.amount}</p>
-            <UpdateButton />
+            <UpdateButton id={expense.id} />
             <DeleteButton id={expense.id} />
           </div>
         </li>

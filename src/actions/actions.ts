@@ -6,7 +6,7 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import Stripe from "stripe";
 
-// Create operation
+// Create operation :
 export async function addExpenses(formData: FormData) {
   // Make sure the user is authenticated before adding expenses into the database
   const { isAuthenticated, getUser } = getKindeServerSession();
@@ -29,7 +29,62 @@ export async function addExpenses(formData: FormData) {
   revalidatePath("/app/dashboard");
 }
 
-// Delete Operation
+// Read operation :
+export async function getExpense(id: number) {
+  // Make sure the user is authenticated before adding expenses into the database
+  const { isAuthenticated } = getKindeServerSession();
+
+  if (!(await isAuthenticated())) {
+    return redirect("/api/auth/login");
+  }
+
+  const expense = await prisma.expense.findFirst({
+    where: {
+      id: id,
+    },
+  });
+
+  if (!expense) {
+    // return revalidatePath("/app/dashboard");
+    return {
+      id: 0,
+      description: "",
+      amount: 0,
+      creatorId: "",
+      createdAt: new Date(),
+    };
+  }
+
+  return expense;
+}
+
+// Update operation :
+export async function updateExpenses(
+  id: number,
+  newDescription: string,
+  newAmount: string
+) {
+  // Make sure the user is authenticated before adding expenses into the database
+  const { isAuthenticated } = getKindeServerSession();
+
+  if (!(await isAuthenticated())) {
+    return redirect("/api/auth/login");
+  }
+
+  await prisma.expense.update({
+    where: {
+      id: id,
+    },
+    data: {
+      description: newDescription,
+      amount: parseFloat(newAmount),
+    },
+  });
+
+  revalidatePath("/app/dashboard");
+}
+
+// Delete Operation :
 export async function deleteExpenses(id: number) {
   // Make sure the user is authenticated before deleting the expenses from the database
   const { isAuthenticated } = getKindeServerSession();
